@@ -89,11 +89,17 @@ ol {
 .timer {
 	color: #F5EFED;
 	width: 100%;
-	height: 40vh;
+	height: 100%;
 	background-color: #D96C06;
 	border-bottom: 75px #BDBF09 solid;
 	font-weight: 900;
 	text-align: center;
+	padding: 60px 0;
+	display: inline-block;
+}
+
+.timer > div {
+	padding: 0 30px;
 }
 
 .timersubtitle {
