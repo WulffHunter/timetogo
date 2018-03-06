@@ -84,7 +84,7 @@ class Timer extends Component {
 
 		return (
 			<div className="timer">
-				<div className="vhcenter">
+				<div>
 					{widget}
 				</div>
 			</div>

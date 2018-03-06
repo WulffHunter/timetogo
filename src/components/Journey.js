@@ -25,6 +25,7 @@ class Journey extends Component {
 	}
 
 	selectJourney() {
+		window.scrollTo(0, 0);
 		this.setState({showMore: true});
 		this.props.selectJourney(this.journey, this.props.jid + 1);
 	}
