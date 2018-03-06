@@ -7,9 +7,13 @@ This project template was built with [Create React App](https://github.com/faceb
 Download using Terminal by `cd`ing into your favourite file and typing:
 
 `git clone https://github.com/wulffhunter/timetogo.git
+
 cd timetogo
+
 npm install react
+
 npm install react-dom
+
 npm install react-scripts`
 
 ## Available Scripts
