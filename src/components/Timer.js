@@ -16,6 +16,28 @@ class Timer extends Component {
 		this.distance = 0;
 
 		this.timerListener = this.timerListener.bind(this);
+		this.timerTick = this.timerTick.bind(this);
+	}
+
+	timerTick() {
+		if (this.leavingAt !== undefined) {
+			var distance = this.leavingAt - (new Date().getTime());
+			this.setState({
+				distance: distance
+			});
+			if (distance > 0) {
+				this.hours   = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+				this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+				this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
+			} else {
+				clearInterval(this.ticker);
+			}
+		} else {
+			clearInterval(this.ticker);
+			this.setState({
+				started: false
+			});
+		}
 	}
 
 	timerListener(departingTime) {
@@ -30,26 +52,8 @@ class Timer extends Component {
 
 			clearInterval(this.ticker);
 
-			this.ticker = setInterval(function() {
-				if (this.leavingAt !== undefined) {
-					var distance = this.leavingAt - (new Date().getTime());
-					this.setState({
-						distance: distance
-					});
-					if (distance > 0) {
-						this.hours   = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-						this.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-						this.seconds = Math.floor((distance % (1000 * 60)) / 1000);
-					} else {
-						clearInterval(this.ticker);
-					}
-				} else {
-					clearInterval(this.ticker);
-					this.setState({
-						started: false
-					});
-				}
-			}.bind(this), 1000);
+			this.timerTick();
+			this.ticker = setInterval(this.timerTick, 1000);
 		} else {
 			clearInterval(this.ticker);
 		}
